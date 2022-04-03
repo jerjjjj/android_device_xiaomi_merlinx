@@ -44,8 +44,7 @@ PRODUCT_PACKAGES += \
 
 # SKU-specific properties
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/sku_props/build_ss_vendor.prop:$(TARGET_COPY_OUT_VENDOR)/build_ss_vendor.prop \
-    $(DEVICE_PATH)/configs/sku_props/build_dsds_vendor.prop:$(TARGET_COPY_OUT_VENDOR)/build_dsds_vendor.prop
+    $(DEVICE_PATH)/sku_props/build_ss_vendor.prop:$(TARGET_COPY_OUT_VENDOR)/build_ss_vendor.prop \
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -97,9 +96,9 @@ PRODUCT_COPY_FILES += \
 
 # WiFi
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
-    $(COMMON_PATH)/configs/wifi/wpa_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant.conf \
-    $(COMMON_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
+    $(COMMON_PATH)/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
+    $(COMMON_PATH)/wifi/wpa_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant.conf \
+    $(COMMON_PATH)/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
 
 # WifiConfig
 PRODUCT_PACKAGES += \
@@ -124,8 +123,8 @@ PRODUCT_PACKAGES += \
 
 # Keylayout
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/keylayout/uinput-fpc.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/uinput-fpc.kl \
-    $(COMMON_PATH)/configs/keylayout/uinput-goodix.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/uinput-goodix.kl
+    $(COMMON_PATH)/keylayout/uinput-fpc.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/uinput-fpc.kl \
+    $(COMMON_PATH)/keylayout/uinput-goodix.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/uinput-goodix.kl
 
 # Seccomp
 PRODUCT_COPY_FILES += \
@@ -211,3 +210,43 @@ PRODUCT_COPY_FILES += \
 # Public Libraries
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/public.libraries/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
+
+# IMS
+PRODUCT_PACKAGES += \
+    ims-ext-common \
+    ims_ext_common.xml \
+    libui_shim
+
+# HIDL
+PRODUCT_PACKAGES += \
+    android.hidl.allocator@1.0.vendor \
+    android.hidl.base@1.0_system \
+    android.hidl.manager@1.0_system \
+    libhidltransport \
+    libhidltransport.vendor \
+    libhwbinder \
+    libhwbinder.vendor \
+    libunwindstack.vendor
+# Symbols
+PRODUCT_PACKAGES += \
+    libshim_vtservice\
+    libshim_camerahalserver
+
+# Light
+PRODUCT_PACKAGES += \
+    android.hardware.light-service.mt6768
+
+# Overlays
+DEVICE_PACKAGE_OVERLAYS += \
+    $(COMMON_PATH)/overlay
+
+# Fstab
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/fstab/fstab.mt6768:$(TARGET_COPY_OUT_RAMDISK)/fstab.mt6768
+
+# USB
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.1-service.mt6768 \
+    android.hardware.usb.gadget@1.1-service.mt6768 \
+    android.hardware.usb@1.0.vendor \
+    android.hardware.usb@1.1.vendo
